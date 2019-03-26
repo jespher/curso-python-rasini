@@ -8,5 +8,3 @@ situacao2 = 'Hoje estou com as roupas ' + ('molhadas.' if esta_chovendo else 'se
 
 print(situacao1)
 print(situacao2)
-
-
