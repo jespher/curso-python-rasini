@@ -36,6 +36,7 @@ print(pessoa.get('cursos'))
 print(pessoa.get('cursos')[0])
 print(pessoa.get('cursos')[1])
 
+print(pessoa.get('tags'))
 print(pessoa.get('tags', []))
 
 
