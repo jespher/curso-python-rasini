@@ -4,5 +4,3 @@ print(next(generator))
 print(next(generator))
 print(next(generator))
 print(next(generator))
-
-
