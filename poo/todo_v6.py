@@ -9,6 +9,11 @@ class Projeto:
     def __iter__(self):
         return self.tarefas.__iter__()
 
+    def __iadd__(self, tarefa):
+        tarefa.dono = self
+        self._add_tarefa(tarefa)
+        return self
+
     def _add_tarefa(self, tarefa, **kwargs):
         self.tarefas.append(tarefa)
 
@@ -59,18 +64,22 @@ class TarefaRecorrente(Tarefa):
     def __init__(self, descricao, vencimento, dias=7):
         super().__init__(descricao, vencimento)
         self.dias = dias
+        self.dono = None
 
     def concluir(self):
         super().concluir()
         novo_vencimento = datetime.now() + timedelta(days=self.dias)
-        return TarefaRecorrente(self.descricao, novo_vencimento, self.dias)
+        nova_tarefa = TarefaRecorrente(self.descricao, novo_vencimento, self.dias)
+        if self.dono:
+            self.dono += nova_tarefa
+        return nova_tarefa
 
 
 def main():
     casa = Projeto('Tarefas de Casa')
     casa.add('Passar roupa', datetime.now())
-    casa.add(TarefaRecorrente('Trocar lencois', datetime.now(), 7))
-    casa.add(casa.procurar('Trocar lencois').concluir())
+    casa += TarefaRecorrente('Trocar lencois', datetime.now(), 7)
+    casa.procurar('Trocar lencois').concluir()
     casa.add('Lavar prato', datetime.now() + timedelta(days=3, minutes=12))
     print(casa)
 
