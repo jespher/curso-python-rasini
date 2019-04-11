@@ -19,4 +19,3 @@ print(list(so_idades))
 
 frases = map(lambda p: f'{p["nome"]} tem {p["idade"]} anos', lista_2)
 print(list(frases))
-
