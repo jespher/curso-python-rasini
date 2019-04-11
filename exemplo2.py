@@ -2,6 +2,11 @@
 # coding=utf8
 
 from calendar import mdays, month_name
+from locale import setlocale, LC_ALL
+from functools import reduce
+
+# Português do Brasil
+setlocale(LC_ALL, 'pt_BR')
 
 print(month_name[1], mdays[1])
 print(month_name[2], mdays[2])
