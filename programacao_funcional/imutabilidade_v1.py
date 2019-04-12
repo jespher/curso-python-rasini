@@ -18,4 +18,26 @@ meses_nome = map(lambda mes: month_name[mes], meses_31)
 juntar_meses = reduce(lambda todos, nome_mes: f'{todos}\n- {nome_mes}', meses_nome, 'Meses com 31 dias:')
 print(juntar_meses)
 
-meses_30 = filter(lambda mes: mdays[mes] == 30, )
+meses_30 = filter(lambda mes: mdays[mes] == 30, range(1, 13))
+meses_nome = map(lambda mes: month_name[mes], meses_30)
+juntar_meses = reduce(lambda todos, nome_mes: f'{todos}\n- {nome_mes}', meses_nome, 'Meses com 30 dias:')
+print(juntar_meses)
+
+mes_28 = filter(lambda mes: mdays[mes] == 28, range(1, 13))
+meses_nome = map(lambda mes: month_name[mes], mes_28)
+juntar_meses = reduce(lambda todos, nome_mes: f'{todos}\n- {nome_mes}', meses_nome, 'Meses com 28 dias:')
+print(juntar_meses)
+
+print(
+    reduce(
+        lambda todos, nome_mes: f'{todos}\n- {nome_mes}',
+        map(
+            lambda mes: month_name[mes],
+            filter(
+                lambda mes: mdays[mes] == 31,
+                range(1, 13)
+            )
+        ),
+        'Meses com 31 dias'
+    )
+)
